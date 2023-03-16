@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "ParaTypeFuturaPTMedium";
+  src: url("fonts/ParaTypeFuturaPTMedium.eot");
+  src: url("fonts/ParaTypeFuturaPTMedium.eot") format("embedded-opentype"),
+    url("fonts/ParaTypeFuturaPTMedium.woff2") format("woff2"), url("fonts/ParaTypeFuturaPTMedium.woff") format("woff"),
+    url("fonts/ParaTypeFuturaPTMedium.ttf") format("truetype"),
+    url("fonts/ParaTypeFuturaPTMedium.svg#ParaTypeFuturaPTMedium") format("svg");
+}
+
+@font-face {
+  font-family: "ParaTypeFuturaPTHeavy";
+  src: url("fonts/ParaTypeFuturaPTHeavy.eot");
+  src: url("fonts/ParaTypeFuturaPTHeavy.eot") format("embedded-opentype"),
+    url("fonts/ParaTypeFuturaPTHeavy.woff2") format("woff2"), url("fonts/ParaTypeFuturaPTHeavy.woff") format("woff"),
+    url("fonts/ParaTypeFuturaPTHeavy.ttf") format("truetype"),
+    url("fonts/ParaTypeFuturaPTHeavy.svg#ParaTypeFuturaPTHeavy") format("svg");
+}
+
+@font-face {
+  font-family: "FuturaPTDemi";
+  src: url("fonts/FuturaPTDemi.eot");
+  src: url("fonts/FuturaPTDemi.eot") format("embedded-opentype"), url("fonts/FuturaPTDemi.woff2") format("woff2"),
+    url("fonts/FuturaPTDemi.woff") format("woff"), url("fonts/FuturaPTDemi.ttf") format("truetype"),
+    url("fonts/FuturaPTDemi.svg#FuturaPTDemi") format("svg");
+}
+
+@layer base {
+  :root {
+    --color-base: #0a192f;
+    --color-accent: #64ffda;
+    --color-white: #ccd6f6;
+    --color-slate: #8892b0;
+    --color-lightest-slate: #a8b2d1;
+    --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  h1 {
+    @apply text-6xl;
+    @apply font-futurademi;
+  }
+
+  h2 {
+    @apply text-3xl;
+    @apply font-futurademi;
+  }
+
+  h3 {
+    @apply text-xl;
+    @apply font-futurademi;
+  }
+
+  h4 {
+    @apply text-lg;
+  }
+}
+
+@layer utilities {
+  [data-color-scheme="dark"] {
+    color-scheme: dark;
+  }
+
+  [data-color-scheme="light"] {
+    color-scheme: light;
+  }
+
+  .filter-accent {
+    filter: grayscale(100%) contrast(1) brightness(90%);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.screen-layer {
+  background-color: var(--color-accent);
+  transition: var(--transition);
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0px;
+    z-index: 3;
+    transition: var(--transition);
+    mix-blend-mode: screen;
+    background-color: var(--color-base);
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &:hover:before {
+    opacity: 1;
+  }
+
+  &.screen-layer--i {
+    &:before {
+      opacity: 1;
+    }
+
+    &:hover:before {
+      opacity: 0;
+    }
+  }
+}
+
+/* Header */
+.main-header {
+  .logo {
+    max-width: 60px;
+    margin-bottom: 40px;
+  }
+
+  ul {
+    li {
+      margin-bottom: 20px;
+
+      a {
+        // color: #64ffda;
+        color: #e6f1ff;
+      }
+    }
+  }
+}
+/* Header - END */
+
+/* Skills */
+#skills {
+  ul {
+    li {
+      position: relative;
+      margin-bottom: 5px;
+      padding-left: 20px;
+      font-size: 14px;
+
+      &:before {
+        content: "✦";
+        position: absolute;
+        left: 0px;
+        color: var(--color-accent);
+        font-size: 14px;
+        line-height: 17px;
+      }
+    }
+  }
+}
+/* Skills - END */
+
+/* Experience */
+#experience {
+  .timeline {
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: calc(50% - 1px);
+      height: 100%;
+      width: 2px;
+      background: var(--color-accent);
+    }
+  }
+}
+/* Experience - END */
+
+/* Portfolio */
+#portfolio {
+  li.project-item:before {
+    content: "";
+    display: block;
+    position: absolute;
+    @apply inset-0;
+  }
+}
